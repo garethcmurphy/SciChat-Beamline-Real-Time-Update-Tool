@@ -14,7 +14,7 @@ def main():
     partition = TopicPartition('V20_writerCommand', 0)
     consumer.assign([partition])
     consumer.seek_to_end()
-    offsets = [consumer.position(tp) for tp in partitions]
+    offsets = [consumer.position(tp) for tp in partition]
     print(offsets)
     consumer.seek(partition=partition, offset=1479)
 
