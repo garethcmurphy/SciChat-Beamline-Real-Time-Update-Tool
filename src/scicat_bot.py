@@ -32,11 +32,10 @@ class ScicatBot():
         token = response.json()
         self.token = token["access_token"]
 
-    def post(self, room_id):
+    def post(self, room_id, filename):
         """post"""
         url = self.create_url("/rooms/"+room_id + "/send/m.room.message")
-        filename = "nicos_00000788.hdf"
-        scicat_url = "https://scicat.esss.se/datasets/20.500.12269%2F788nicos_00000788.hdf"
+        scicat_url = "https://scicat.esss.se/"
         data = {"msgtype": "m.text", "body": "The file " + filename +
                 " was created. See " + scicat_url + " for details"}
         print(url)
@@ -58,6 +57,7 @@ class ScicatBot():
         print(media_url)
 
     def post_image(self, room_id):
+        """post image"""
 
         url = self.create_url("/rooms/"+room_id + "/send/m.room.message")
         data = {"msgtype": "m.image",
@@ -122,10 +122,12 @@ def main():
     proposal_topic = "Investigation of water"
     proposal_id = "QHK123"
     room_alias = "#"+proposal_id+":ess"
-    bot.create_room(room_alias, proposal_id, proposal_topic)
+    #bot.create_room(room_alias, proposal_id, proposal_topic)
     room_id = bot.get_room_id(room_alias)
-    #bot.upload_image()
-    bot.post_image(room_id)
+    # bot.upload_image()
+    filename = "nicos.hdf"
+    bot.post(room_id, filename)
+    # bot.post_image(room_id)
     # username = "@garethmurphy:ess"
     # bot.invite(room_id, username)
 

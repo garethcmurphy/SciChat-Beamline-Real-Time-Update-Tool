@@ -13,7 +13,7 @@ def main():
         value_deserializer=lambda x: json.loads(x.decode('utf-8')))
     partition = TopicPartition('V20_writerCommand', 0)
     consumer.assign([partition])
-    consumer.seek(partition=partition, offset=1210)
+    consumer.seek(partition=partition, offset=1479)
 
     for message in consumer:
         # message value and key are raw bytes -- decode if necessary!
@@ -30,6 +30,13 @@ def main():
                     if "file_name" in val["file_attributes"]:
                         attrib = val["file_attributes"]
                         print(attrib["file_name"])
+                        bot = ScicatBot()
+                        bot.login()
+                        proposal_id = "QHK123"
+                        room_alias = "#"+proposal_id+":ess"
+                        room_id = bot.get_room_id(room_alias)
+                        filename = attrib["file_name"]
+                        bot.post(room_id, filename)
 
 
 if __name__ == "__main__":
