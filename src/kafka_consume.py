@@ -37,6 +37,9 @@ def main():
                         room_id = bot.get_room_id(room_alias)
                         filename = attrib["file_name"]
                         bot.post(room_id, filename)
+                        filename = "im.png"
+                        bot.upload_image(filename)
+                        bot.post_image(room_id)
 
 
 if __name__ == "__main__":

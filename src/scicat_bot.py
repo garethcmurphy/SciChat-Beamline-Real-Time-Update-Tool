@@ -45,9 +45,8 @@ class ScicatBot():
         token = response.json()
         print(token)
 
-    def upload_image(self):
+    def upload_image(self, filename):
         """post"""
-        filename = "im.png"
         media_url = self.media_url + "/upload?filename=im.png&access_token=" + self.token
         stats = os.stat(filename)
 
@@ -130,7 +129,8 @@ def main():
     room_id = bot.get_room_id(room_alias)
     filename = "nicos.hdf"
     bot.post(room_id, filename)
-    bot.upload_image()
+    filename = "im.png"
+    bot.upload_image(filename)
     bot.post_image(room_id)
     # username = "@garethmurphy:ess"
     # bot.invite(room_id, username)
