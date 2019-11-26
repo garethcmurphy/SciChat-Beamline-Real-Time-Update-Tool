@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """kafa consume"""
 import json
-from kafka import KafkaConsumer
+from kafka import KafkaConsumer, TopicPartition
 
 
 def main():
@@ -11,6 +11,7 @@ def main():
         bootstrap_servers=['localhost:9093'],
         enable_auto_commit=False,
         value_deserializer=lambda x: json.loads(x.decode('utf-8')))
+    partition = TopicPartition('V20_writerCommand', 0)
     consumer.seek(partition=0, offset=1210)
 
     for message in consumer:
