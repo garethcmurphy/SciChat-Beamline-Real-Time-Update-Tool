@@ -20,8 +20,15 @@ def main():
         print("%s:%d:%d: key=%s value=" % (message.topic, message.partition,
                                            message.offset, message.key
                                            ))
-        if "cmd" in message.value:
-            print(message.value["cmd"])
+        val = message.value
+        if "cmd" in val:
+            cmd = val["cmd"]
+            print(cmd)
+            if cmd == "FileWriter_new":
+                if "file_attributes" in val:
+                    if "file_name" in val["file_attributes"]:
+                        attrib = val["file_attributes"]
+                        print(attrib["file_name"])
 
 
 if __name__ == "__main__":
