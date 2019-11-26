@@ -48,11 +48,11 @@ class ScicatBot():
         """post"""
         filename = "im.png"
         media_url = self.media_url + "/upload?filename=im.png&access_token=" + self.token
-        stats= os.stat(filename)
+        stats = os.stat(filename)
 
-        headers = {"Content-Type": "image/png", 
-        "Content-Length": str(stats.st_size)}
-        files =  open('im.png', 'rb').read()
+        headers = {"Content-Type": "image/png",
+                   "Content-Length": str(stats.st_size)}
+        files = open('im.png', 'rb').read()
         response = requests.post(media_url, data=files, headers=headers)
         print(response.json())
         print(media_url)
@@ -62,8 +62,8 @@ class ScicatBot():
 
         url = self.create_url("/rooms/"+room_id + "/send/m.room.message")
         data = {"msgtype": "m.image",
-        "body" : "plot of data",
-         'url': 'mxc://ess/impshuwSHfeyyqJwODZxdcRf'}
+                "body": "plot of data",
+                'url': 'mxc://ess/impshuwSHfeyyqJwODZxdcRf'}
 
         response = requests.post(url, json=data)
         token = response.json()
@@ -97,6 +97,7 @@ class ScicatBot():
         return url
 
     def get_room_id(self, room_alias):
+        """get room id"""
         room_alias_encode = urllib.parse.quote(room_alias)
         url = self.create_url("/directory/room/"+room_alias_encode)
         response = requests.get(url)
