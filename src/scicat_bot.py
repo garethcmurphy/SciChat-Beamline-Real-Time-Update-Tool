@@ -14,6 +14,7 @@ class ScicatBot():
     media_url = base_url + "/media/r0"
     username = ""
     password = ""
+    token = ""
 
     def read_config(self):
         """read config"""
