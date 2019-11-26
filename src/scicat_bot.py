@@ -15,6 +15,7 @@ class ScicatBot():
     username = ""
     password = ""
     token = ""
+    content_uri = ""
 
     def read_config(self):
         """read config"""
@@ -54,7 +55,8 @@ class ScicatBot():
                    "Content-Length": str(stats.st_size)}
         files = open('im.png', 'rb').read()
         response = requests.post(media_url, data=files, headers=headers)
-        print(response.json())
+        response_json = response.json()
+        self.content_uri = response_json["content_uri"]
         print(media_url)
 
     def post_image(self, room_id):
@@ -63,7 +65,7 @@ class ScicatBot():
         url = self.create_url("/rooms/"+room_id + "/send/m.room.message")
         data = {"msgtype": "m.image",
                 "body": "plot of data",
-                'url': 'mxc://ess/impshuwSHfeyyqJwODZxdcRf'}
+                'url': self.content_uri}
 
         response = requests.post(url, json=data)
         token = response.json()
@@ -126,10 +128,10 @@ def main():
     room_alias = "#"+proposal_id+":ess"
     #bot.create_room(room_alias, proposal_id, proposal_topic)
     room_id = bot.get_room_id(room_alias)
-    # bot.upload_image()
     filename = "nicos.hdf"
     bot.post(room_id, filename)
-    # bot.post_image(room_id)
+    bot.upload_image()
+    bot.post_image(room_id)
     # username = "@garethmurphy:ess"
     # bot.invite(room_id, username)
 
