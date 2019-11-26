@@ -13,6 +13,9 @@ def main():
         value_deserializer=lambda x: json.loads(x.decode('utf-8')))
     partition = TopicPartition('V20_writerCommand', 0)
     consumer.assign([partition])
+    consumer.seek_to_end([partition])
+    offsets = [consumer.position(tp) for tp in partitions]
+    print(offsets)
     consumer.seek(partition=partition, offset=1479)
 
     for message in consumer:
