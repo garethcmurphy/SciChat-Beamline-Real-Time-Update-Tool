@@ -14,8 +14,8 @@ def main():
     partition = TopicPartition('V20_writerCommand', 0)
     consumer.assign([partition])
     consumer.seek_to_end()
-    offsets = [consumer.position(tp) for tp in partition]
-    print(offsets)
+    last_offset = consumer.position(partition)
+    print(last_offset)
     consumer.seek(partition=partition, offset=1479)
 
     for message in consumer:
