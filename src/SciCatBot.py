@@ -62,7 +62,7 @@ class ScicatBot():
         url = self.create_url("/rooms/"+room_id + "/send/m.room.message")
         data = {"msgtype": "m.image",
         "body" : "plot of data",
-         'url': 'mxc://synapse/impshuwSHfeyyqJwODZxdcRf'}
+         'url': 'mxc://ess/impshuwSHfeyyqJwODZxdcRf'}
 
         response = requests.post(url, json=data)
         token = response.json()
@@ -80,7 +80,7 @@ class ScicatBot():
     def create_room(self, alias, proposal_id, proposal_topic):
         """create room"""
         url = self.create_url("/createRoom")
-        guests = ["@garethmurphy:synapse"]
+        guests = ["@garethmurphy:ess"]
         data = {"room_alias_name": proposal_id,
                 "topic": proposal_topic,
                 "name": proposal_id,
@@ -108,7 +108,7 @@ class ScicatBot():
     def invite(self, room_id, user_id):
         """invite"""
         url = self.create_url("/rooms/" + room_id + "/invite")
-        data = {"user_id": "@garethmurphy:synapse"}
+        data = {"user_id": "@garethmurphy:ess"}
         response = requests.post(url, json=data)
         token = response.json()
         print(token)
@@ -121,12 +121,12 @@ def main():
     # bot.post()
     proposal_topic = "Investigation of water"
     proposal_id = "QHK123"
-    room_alias = "#"+proposal_id+":synapse"
+    room_alias = "#"+proposal_id+":ess"
     bot.create_room(room_alias, proposal_id, proposal_topic)
     room_id = bot.get_room_id(room_alias)
     #bot.upload_image()
     bot.post_image(room_id)
-    # username = "@garethmurphy:synapse"
+    # username = "@garethmurphy:ess"
     # bot.invite(room_id, username)
 
 
