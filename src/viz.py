@@ -6,7 +6,8 @@ def main():
     """main"""
     path = "/data/kafka-to-nexus/"
     filename = "nicos_00000757.hdf"
-    visens.tof(path+filename, save="/tmp/"+filename.replace(".hdf", ".png"))
+    visens.preview(filename, log=True, save=filename.replace(".hdf", ".png"))
+
 
 if __name__ == "__main__":
     main()
