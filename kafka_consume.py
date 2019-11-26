@@ -12,7 +12,7 @@ def main():
         enable_auto_commit=False,
         value_deserializer=lambda x: json.loads(x.decode('utf-8')))
     partition = TopicPartition('V20_writerCommand', 0)
-    consumer.seek(partition=0, offset=1210)
+    consumer.seek(partition=partition, offset=1210)
 
     for message in consumer:
         # message value and key are raw bytes -- decode if necessary!
