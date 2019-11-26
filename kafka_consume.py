@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """kafa consume"""
-from json import loads
+import json
 from kafka import KafkaConsumer
 
 
@@ -10,7 +10,7 @@ def main():
         'V20_writerCommand',
         bootstrap_servers=['localhost:9093'],
         enable_auto_commit=False,
-        value_deserializer=lambda x: loads(x.decode('utf-8')))
+        value_deserializer=lambda x: json.loads(x.decode('utf-8')))
     consumer.seek(partition=None, offset=1210)
 
     for message in consumer:
@@ -19,6 +19,8 @@ def main():
         print("%s:%d:%d: key=%s value=" % (message.topic, message.partition,
                                            message.offset, message.key
                                            ))
+        if "cmd" in message.value:
+            print(message.value["cmd"])
 
 
 if __name__ == "__main__":
