@@ -7,7 +7,6 @@ from kafka import KafkaConsumer, TopicPartition
 def main():
     """setup consumer"""
     consumer = KafkaConsumer(
-        'V20_writerCommand',
         bootstrap_servers=['localhost:9093'],
         enable_auto_commit=False,
         value_deserializer=lambda x: json.loads(x.decode('utf-8')))
