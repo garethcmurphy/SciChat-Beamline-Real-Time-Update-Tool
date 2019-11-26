@@ -11,7 +11,7 @@ def main():
         bootstrap_servers=['localhost:9093'],
         enable_auto_commit=False,
         value_deserializer=lambda x: json.loads(x.decode('utf-8')))
-    consumer.seek(partition=None, offset=1210)
+    consumer.seek(partition=0, offset=1210)
 
     for message in consumer:
         # message value and key are raw bytes -- decode if necessary!
