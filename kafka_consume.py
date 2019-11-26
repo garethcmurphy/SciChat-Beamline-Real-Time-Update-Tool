@@ -10,8 +10,7 @@ def main():
         'V20_writerCommand',
         bootstrap_servers=['localhost:9093'],
         auto_offset_reset='earliest',
-        enable_auto_commit=True,
-        group_id='my-group',
+        enable_auto_commit=False,
         value_deserializer=lambda x: loads(x.decode('utf-8')))
 
     for message in consumer:
