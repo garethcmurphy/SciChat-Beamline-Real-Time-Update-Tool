@@ -2,6 +2,7 @@
 """kafa consume"""
 import json
 from kafka import KafkaConsumer, TopicPartition
+from SciCatBot import ScicatBot
 
 
 def main():

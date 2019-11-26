@@ -122,7 +122,7 @@ def main():
     proposal_topic = "Investigation of water"
     proposal_id = "QHK123"
     room_alias = "#"+proposal_id+":synapse"
-    # bot.create_room(room_alias, proposal_id, proposal_topic)
+    bot.create_room(room_alias, proposal_id, proposal_topic)
     room_id = bot.get_room_id(room_alias)
     #bot.upload_image()
     bot.post_image(room_id)
