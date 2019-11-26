@@ -6,8 +6,8 @@ from kafka import KafkaConsumer
 def main():
     """setup consumer"""
     consumer = KafkaConsumer(
-    'v20_filerwriter_Cmd',
-    bootstrap_servers=['localhost:9092'],
+    'V20_writerCommand',
+    bootstrap_servers=['localhost:9093'],
     auto_offset_reset='earliest',
     enable_auto_commit=True,
     group_id='my-group',
