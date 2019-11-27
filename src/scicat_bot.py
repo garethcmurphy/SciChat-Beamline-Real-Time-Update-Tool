@@ -38,8 +38,8 @@ class ScicatBot():
         """post"""
         url = self.create_url("/rooms/"+room_id + "/send/m.room.message")
         scicat_url = "https://scicat.esss.se/"
-        data = {"msgtype": "m.text", "body": "The file " + filename +
-                " was created. See " + scicat_url + " for details"}
+        data = {"msgtype": "m.text",
+                "body": "The file " + filename + " was created. See " + scicat_url + " for details"}
         print(url)
         response = requests.post(url, json=data)
         token = response.json()
@@ -70,7 +70,7 @@ class ScicatBot():
         token = response.json()
         print(token)
 
-    def upload(self, file):
+    def upload(self):
         """upload"""
         url = self.create_url("/upload")
         headers = {'Content-type': 'image/png'}
@@ -79,7 +79,7 @@ class ScicatBot():
         response_json = response.json()
         print(response_json)
 
-    def create_room(self, alias, proposal_id, proposal_topic):
+    def create_room(self, proposal_id, proposal_topic):
         """create room"""
         url = self.create_url("/createRoom")
         guests = ["@garethmurphy:ess"]
@@ -110,8 +110,9 @@ class ScicatBot():
 
     def invite(self, room_id, user_id):
         """invite"""
+        user_id = "@garethmurphy:ess"
         url = self.create_url("/rooms/" + room_id + "/invite")
-        data = {"user_id": "@garethmurphy:ess"}
+        data = {"user_id": user_id}
         response = requests.post(url, json=data)
         token = response.json()
         print(token)
