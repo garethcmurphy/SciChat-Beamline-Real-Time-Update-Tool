@@ -8,6 +8,7 @@ import requests
 
 import visens
 
+
 class ScicatBot():
     """scicatbot"""
     base_url = "https://scitest.esss.lu.se/_matrix"
@@ -55,8 +56,8 @@ class ScicatBot():
 
         headers = {"Content-Type": "image/png",
                    "Content-Length": str(stats.st_size)}
-        filename =  self.data_file
-        visens.preview(path+filename, log=True, save="im.png")
+        filename = self.data_file
+        visens.preview(filename, log=True, save="im.png")
         files = open('im.png', 'rb').read()
         response = requests.post(media_url, data=files, headers=headers)
         response_json = response.json()
