@@ -7,7 +7,7 @@ import json
 import requests
 
 import visens
-import search
+import scicat
 
 
 class ScicatBot():
