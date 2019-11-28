@@ -44,6 +44,7 @@ class ScicatBot():
         scicat_url = "https://scicat.esss.se/"
         pid = ""
         basename = os.path.basename(filename).strip(".hdf")
+        print(basename)
         response = scicat.search(basename, 1)
         first = response[0]
         if "pid" in first:
