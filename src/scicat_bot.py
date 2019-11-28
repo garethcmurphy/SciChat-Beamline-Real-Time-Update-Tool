@@ -7,6 +7,7 @@ import json
 import requests
 
 import visens
+import search
 
 
 class ScicatBot():
@@ -41,6 +42,14 @@ class ScicatBot():
         """post"""
         url = self.create_url("/rooms/"+room_id + "/send/m.room.message")
         scicat_url = "https://scicat.esss.se/"
+        pid = ""
+        response = scicat.search(filename)
+        result = response.json()
+        first = result[0]
+        if "pid" in first:
+            print(pid)
+            new_url = scicat_url + pid
+            print(new_url)
         self.data_file = filename
         data = {"msgtype": "m.text",
                 "body": "The file " + filename + " was created. See " + scicat_url + " for details"}
@@ -130,6 +139,7 @@ def main():
     bot.login()
     # bot.post()
     proposal_topic = "Investigation of water"
+    proposal_id = "YC7SZ5"
     proposal_id = "QHK123"
     room_alias = "#"+proposal_id+":ess"
     #bot.create_room(room_alias, proposal_id, proposal_topic)
