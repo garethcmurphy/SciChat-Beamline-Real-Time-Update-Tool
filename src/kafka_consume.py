@@ -16,7 +16,7 @@ def main():
     consumer.seek_to_end()
     last_offset = consumer.position(partition)
     print(last_offset)
-    consumer.seek(partition=partition, offset=3050)
+    consumer.seek(partition=partition, offset=last_offset-2)
 
     for message in consumer:
         # message value and key are raw bytes -- decode if necessary!
