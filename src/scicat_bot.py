@@ -47,6 +47,7 @@ class ScicatBot():
         print(basename)
         response = scicat.search(basename, 1)
         first = response[0]
+        print(first)
         if "pid" in first:
             print(pid)
             new_url = scicat_url + pid
