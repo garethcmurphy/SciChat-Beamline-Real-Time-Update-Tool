@@ -43,7 +43,7 @@ class ScicatBot():
         url = self.create_url("/rooms/"+room_id + "/send/m.room.message")
         scicat_url = "https://scicat.esss.se/"
         pid = ""
-        response = scicat.search(filename)
+        response = scicat.search(filename, 1)
         result = response.json()
         first = result[0]
         if "pid" in first:
