@@ -6,6 +6,7 @@ import urllib
 import json
 import requests
 
+import visens
 
 class ScicatBot():
     """scicatbot"""
@@ -16,6 +17,7 @@ class ScicatBot():
     password = ""
     token = ""
     content_uri = ""
+    data_file = ""
 
     def read_config(self):
         """read config"""
@@ -38,6 +40,7 @@ class ScicatBot():
         """post"""
         url = self.create_url("/rooms/"+room_id + "/send/m.room.message")
         scicat_url = "https://scicat.esss.se/"
+        self.data_file = filename
         data = {"msgtype": "m.text",
                 "body": "The file " + filename + " was created. See " + scicat_url + " for details"}
         print(url)
@@ -52,6 +55,8 @@ class ScicatBot():
 
         headers = {"Content-Type": "image/png",
                    "Content-Length": str(stats.st_size)}
+        filename =  self.data_file
+        visens.preview(path+filename, log=True, save="im.png")
         files = open('im.png', 'rb').read()
         response = requests.post(media_url, data=files, headers=headers)
         response_json = response.json()
