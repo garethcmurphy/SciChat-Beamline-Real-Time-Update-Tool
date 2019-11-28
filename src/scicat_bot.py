@@ -44,8 +44,7 @@ class ScicatBot():
         scicat_url = "https://scicat.esss.se/"
         pid = ""
         response = scicat.search(filename, 1)
-        result = response.json()
-        first = result[0]
+        first = response[0]
         if "pid" in first:
             print(pid)
             new_url = scicat_url + pid
