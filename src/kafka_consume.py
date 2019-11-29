@@ -27,7 +27,7 @@ class KafkaManager:
         consumer.seek_to_end()
         last_offset = consumer.position(partition)
         print(last_offset)
-        consumer.seek(partition=partition, offset=last_offset-5)
+        consumer.seek(partition=partition, offset=last_offset)
 
         for message in consumer:
             # message value and key are raw bytes -- decode if necessary!
@@ -46,7 +46,7 @@ class KafkaManager:
                             self.attrib = val["file_attributes"]
                             print(self.attrib["file_name"])
                 elif cmd == "FileWriter_stop":
-                    if (self.previous_command == "FileWriter_new"):
+                    if self.previous_command == "FileWriter_new":
                         self.previous_command = cmd
                         time.sleep(5)
                         bot = ScicatBot()

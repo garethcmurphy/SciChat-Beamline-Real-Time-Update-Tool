@@ -8,10 +8,14 @@ kafka = "*"
 pytest = "*"
 requests = "*"
 visens = "*"
+scicat = "*"
+"h5py" = "*"
 
 [dev-packages]
 pylint = "*"
 "autopep8" = "*"
+rope = "*"
+pytest = "*"
 
 [requires]
 python_version = "3.7"

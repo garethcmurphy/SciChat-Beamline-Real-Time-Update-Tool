@@ -5,7 +5,8 @@ import visens
 def main():
     """main"""
     path = "/data/kafka-to-nexus/"
-    filename = "nicos_00001500.hdf"
+    path = "./"
+    filename = "nicos_00000757.hdf"
     visens.preview(path+filename, log=True, save=filename.replace(".hdf", ".png"))
 
 
