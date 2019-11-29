@@ -58,7 +58,7 @@ class KafkaManager:
                         bot.post(room_id, filename)
                         image_name = "im.png"
                         try:
-                            with h5py.File(filename, "r") as file:
+                            with h5py.File(filename, "r", libver="latest", swmr=True) as file:
                                 print(file["/entry/title"])
                             bot.upload_image(image_name)
                             bot.post_image(room_id)
