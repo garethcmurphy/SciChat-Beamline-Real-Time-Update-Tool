@@ -43,6 +43,7 @@ class ScicatBot():
         """post"""
         url = self.create_url("/rooms/"+room_id + "/send/m.room.message")
         scicat_url = "https://scicat.esss.se/"
+        new_url = scicat_url
         pid = ""
         basename = os.path.basename(filename).strip(".hdf")
         print(basename)
@@ -56,7 +57,7 @@ class ScicatBot():
             print(new_url)
         self.data_file = filename
         data = {"msgtype": "m.text",
-                "body": "The file " + filename + " was created. See " + scicat_url + " for details"}
+                "body": "The file " + filename + " was created. See " + new_url + " for details"}
         print(url)
         response = requests.post(url, json=data)
         token = response.json()
