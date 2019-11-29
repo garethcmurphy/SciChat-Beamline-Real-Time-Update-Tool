@@ -3,6 +3,7 @@
 import os
 
 import urllib
+import urllib.parse
 import json
 import requests
 
@@ -53,7 +54,7 @@ class ScicatBot():
         if "pid" in first:
             pid = first["pid"]
             print(pid)
-            new_url = scicat_url + "datasets/" + urllib.parse.quote(pid)
+            new_url = scicat_url + "datasets/" + urllib.parse.quote_plus(pid)
             print(new_url)
         self.data_file = filename
         data = {"msgtype": "m.text",
