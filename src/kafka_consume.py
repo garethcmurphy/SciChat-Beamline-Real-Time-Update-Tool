@@ -52,6 +52,7 @@ class KafkaManager:
                         bot = ScicatBot()
                         bot.login()
                         proposal_id = "QHK123"
+                        proposal_id = "YC7SZ5"
                         room_alias = "#"+proposal_id+":ess"
                         room_id = bot.get_room_id(room_alias)
                         filename = self.attrib["file_name"]
