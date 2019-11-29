@@ -3,6 +3,7 @@
 import time
 import json
 
+import h5py
 from kafka import KafkaConsumer, TopicPartition
 from scicat_bot import ScicatBot
 
@@ -55,9 +56,14 @@ class KafkaManager:
                         room_id = bot.get_room_id(room_alias)
                         filename = self.attrib["file_name"]
                         bot.post(room_id, filename)
-                        filename = "im.png"
-                        bot.upload_image(filename)
-                        bot.post_image(room_id)
+                        image_name = "im.png"
+                        try:
+                            with h5py.File(filename, "r") as file:
+                                print(file["/entry/title"])
+                            bot.upload_image(image_name)
+                            bot.post_image(room_id)
+                        except OSError:
+                            print(OSError)
 
 
 def main():

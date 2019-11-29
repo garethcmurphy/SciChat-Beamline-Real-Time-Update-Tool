@@ -6,6 +6,7 @@ import urllib
 import json
 import requests
 
+import h5py
 import visens
 import scicat
 
