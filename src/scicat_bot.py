@@ -50,8 +50,9 @@ class ScicatBot():
         first = response[0]
         print(first)
         if "pid" in first:
+            pid = first["pid"]
             print(pid)
-            new_url = scicat_url + pid
+            new_url = scicat_url + "datasets/" + urllib.parse.quote(pid)
             print(new_url)
         self.data_file = filename
         data = {"msgtype": "m.text",
