@@ -62,8 +62,9 @@ class KafkaManager:
                                 print(file["/entry/title"])
                             bot.upload_image(image_name)
                             bot.post_image(room_id)
-                        except OSError:
-                            print(OSError)
+                        except OSError as err:
+                            print("OS error: {0}".format(err))
+                            print("Error reading hdf5 file")
 
 
 def main():
