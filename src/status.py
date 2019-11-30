@@ -11,6 +11,7 @@ class KafkaManager:
     """add manager"""
     attrib = ""
     previous_command = ""
+    file_name = ""
 
     def __init__(self):
         """init"""
@@ -43,15 +44,23 @@ class KafkaManager:
                 #print("dt_object =", dt_object)
             if "type" in val:
                 #print(val["type"])
-                type = val["type"]
-                if (type == "stream_master_status"):
+                type1 = val["type"]
+                if (type1 == "stream_master_status"):
                     pass
-                elif (type == "filewriter_status_master"):
-                    pass
+                elif (type1 == "filewriter_status_master"):
+                    files = val["files"]
+                    key = list(files.values())[0]
+                    self.file_name = files[key]["filename"]
                 else:
-                    print(type)
+                    print(type1)
                     if "code" in val:
-                        print(val["code"])
+                        code = val["code"]
+                        print(code)
+                        if code == "START":
+                            self.file_name = ""
+                        elif code == "CLOSE":
+                            print(self.file_name)
+                            print(val)
                     #exit(0)
 
 def main():
