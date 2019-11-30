@@ -3,9 +3,7 @@
 import time
 import json
 
-import h5py
 from kafka import KafkaConsumer, TopicPartition
-from scicat_bot import ScicatBot
 
 
 class KafkaManager:
