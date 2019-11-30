@@ -51,7 +51,9 @@ class KafkaManager:
                     files = val["files"]
                     print(files)
                     key = ""
-                    key = list(files.values())[0]
+                    key_array = list(files.values())
+                    key = key_array.pop()
+
                     self.file_name = key["filename"]
                     files = ""
                     key = ""
