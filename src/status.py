@@ -2,6 +2,7 @@
 """kafa consume"""
 import time
 import json
+from datetime import datetime
 
 from kafka import KafkaConsumer, TopicPartition
 
@@ -45,6 +46,11 @@ class KafkaManager:
                     pass
                 else:
                     print(type)
+                    if "timestamp" in val:
+                        print(val["timestamp"])
+                        dt_object = datetime.fromtimestamp(val["timestamp"])
+                        print("dt_object =", dt_object)
+                    exit(0)
 
 def main():
     """main"""
