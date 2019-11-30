@@ -78,6 +78,10 @@ class ScicatBot():
             print("Type error: {0}".format(err))
             print("Error reading hdf5 file")
             return 0
+        except ValueError as err:
+            print("Type error: {0}".format(err))
+            print("Error reading hdf5 file")
+            return 0
         files = open('im.png', 'rb').read()
         response = requests.post(media_url, data=files, headers=headers)
         response_json = response.json()
