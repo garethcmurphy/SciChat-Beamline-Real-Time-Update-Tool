@@ -15,6 +15,7 @@ class KafkaManager:
     files = {}
     service_id = ""
     job_id = ""
+    log_all = False
 
     def __init__(self):
         """init"""
@@ -53,6 +54,8 @@ class KafkaManager:
                 elif type1 == "filewriter_status_master":
                     # print(message.offset)
                     files = val["files"]
+                    if self.log_all == True:
+                        print(files)
                     # print(val)
                     files_dict = ""
                     key_array = list(files.values())
@@ -78,12 +81,14 @@ class KafkaManager:
                             self.service_id = val["service_id"]
                             self.job_id = val["job_id"]
                             print("job id", self.job_id)
+                            self.log_all = True
                         elif code == "CLOSE":
                             print(message.offset)
                             # print(self.files)
                             print("closing")
                             print(self.file_name)
                             print(val)
+                            self.log_all = False
                     # exit(0)
 
 
