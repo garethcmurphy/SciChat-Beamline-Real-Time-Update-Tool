@@ -59,7 +59,7 @@ class KafkaManager:
                     files_dict = key_array.pop()
                     # check servcie id
                     # print("gmx",val["service_id"])
-                    print(self.service_id, val["service_id"])
+                    # print(self.service_id, val["service_id"])
                     if val["service_id"] == self.service_id:
                         if self.job_id in files:
                             print("master")
