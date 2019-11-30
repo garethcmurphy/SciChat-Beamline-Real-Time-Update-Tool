@@ -42,8 +42,8 @@ class KafkaManager:
             #                                   message.value
             #                                   ))
             val = message.value
-            #if (self.log_all == True):
-                #print(val)
+            # if (self.log_all == True):
+            # print(val)
             # print(message.offset)
             if "timestamp" in val:
                 # print(val["timestamp"])
@@ -90,7 +90,7 @@ class KafkaManager:
                             # print(self.files)
                             print("closing")
                             for file in glob.glob("/data/kafka-to-nexus/*"+self.job_id+"*"):
-                                print(file)                
+                                print(file)
                             # print(self.file_name)
                             print(val)
                             self.log_all = False
