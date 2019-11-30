@@ -74,6 +74,7 @@ class KafkaManager:
                             print(val["service_id"])
                             self.service_id = val["service_id"]
                             self.job_id =  val["job_id"]
+                            print("job id", self.job_id)
                         elif code == "CLOSE":
                             print(message.offset)
                             # print(self.files)
