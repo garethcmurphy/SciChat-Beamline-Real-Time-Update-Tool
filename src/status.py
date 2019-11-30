@@ -56,7 +56,7 @@ class KafkaManager:
                     files_dict = key_array.pop()
 
                     self.file_name = files_dict["filename"]
-                    self.files = files_dict
+                    self.files = files
                     files = ""
                     files_dict = ""
                     #print(self.file_name)
