@@ -35,6 +35,7 @@ class KafkaManager:
             #                                   message.value
             #                                   ))
             val = message.value
+            print(message.offset)
             if "code" in val:
                 print(val["code"])
 
