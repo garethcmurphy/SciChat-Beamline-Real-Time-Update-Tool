@@ -27,7 +27,7 @@ class KafkaManager:
         consumer.seek_to_end()
         last_offset = consumer.position(partition)
         print(last_offset)
-        consumer.seek(partition=partition, offset=last_offset-36)
+        consumer.seek(partition=partition, offset=last_offset-10)
 
         for message in consumer:
             # message value and key are raw bytes -- decode if necessary!
