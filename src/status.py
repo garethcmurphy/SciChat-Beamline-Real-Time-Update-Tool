@@ -50,6 +50,8 @@ class KafkaManager:
                     pass
                 else:
                     print(type)
+                    if "code" in val:
+                        print(val["code"])
                     exit(0)
 
 def main():
