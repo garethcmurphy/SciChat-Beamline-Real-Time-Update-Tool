@@ -49,9 +49,9 @@ class KafkaManager:
                 if type1 == "stream_master_status":
                     pass
                 elif type1 == "filewriter_status_master":
-                    print(message.offset)
+                    #print(message.offset)
                     files = val["files"]
-                    print(val)
+                    #print(val)
                     files_dict = ""
                     key_array = list(files.values())
                     files_dict = key_array.pop()
