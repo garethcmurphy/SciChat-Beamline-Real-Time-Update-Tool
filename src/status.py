@@ -37,7 +37,14 @@ class KafkaManager:
             val = message.value
             print(message.offset)
             if "type" in val:
-                print(val["type"])
+                #print(val["type"])
+                type = val["type"]
+                if (type == "stream_master_status"):
+                    pass
+                elif (type == "filewriter_status_master"):
+                    pass
+                else:
+                    print(type)
 
 def main():
     """main"""
