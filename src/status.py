@@ -14,7 +14,7 @@ class KafkaManager:
     file_name = ""
     files = {}
     service_id = ""
-
+    job_id = ""
     def __init__(self):
         """init"""
 
@@ -59,7 +59,8 @@ class KafkaManager:
                     # check servcie id
                     # print("gmx",val["service_id"])
                     if val["service_id"] == self.service_id:
-                        self.file_name = files_dict["filename"]
+                        if self.job_id in files:
+                            self.file_name = files[self.job_id]["filename"] 
                     self.files = files
                     files = ""
                     files_dict = ""
@@ -71,6 +72,8 @@ class KafkaManager:
                         print(code)
                         if code == "START":
                             print(val["service_id"])
+                            self.service_id = val["service_id"]
+                            self.job_id =  val["job_id"]
                         elif code == "CLOSE":
                             print(message.offset)
                             # print(self.files)
