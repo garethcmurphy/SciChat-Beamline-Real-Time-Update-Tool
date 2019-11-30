@@ -39,8 +39,8 @@ class KafkaManager:
             # print(message.offset)
             if "timestamp" in val:
                 print(val["timestamp"])
-                #dt_object = datetime.fromtimestamp(val["timestamp"])
-                #print("dt_object =", dt_object)
+                dt_object = datetime.fromtimestamp(int(val["timestamp"])/1000)
+                print("dt_object =", dt_object)
             if "type" in val:
                 #print(val["type"])
                 type = val["type"]
