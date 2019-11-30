@@ -45,9 +45,9 @@ class KafkaManager:
             if "type" in val:
                 #print(val["type"])
                 type1 = val["type"]
-                if (type1 == "stream_master_status"):
+                if type1 == "stream_master_status":
                     pass
-                elif (type1 == "filewriter_status_master"):
+                elif type1 == "filewriter_status_master":
                     files = val["files"]
                     key = ""
                     key = list(files.values())[0]
