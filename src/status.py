@@ -41,6 +41,8 @@ class KafkaManager:
             #                                   message.value
             #                                   ))
             val = message.value
+            if (self.log_all == True):
+                print(val)
             # print(message.offset)
             if "timestamp" in val:
                 # print(val["timestamp"])
