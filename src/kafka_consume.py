@@ -27,7 +27,7 @@ class KafkaManager:
         consumer.seek_to_end()
         last_offset = consumer.position(partition)
         print(last_offset)
-        consumer.seek(partition=partition, offset=last_offset-12)
+        consumer.seek(partition=partition, offset=last_offset - 8)
 
         for message in consumer:
             # message value and key are raw bytes -- decode if necessary!
@@ -52,7 +52,7 @@ class KafkaManager:
                         bot = ScicatBot()
                         bot.login()
                         proposal_id = "QHK123"
-                        #proposal_id = "YC7SZ5"
+                        proposal_id = "YC7SZ5"
                         room_alias = "#"+proposal_id+":ess"
                         room_id = bot.get_room_id(room_alias)
                         filename = self.attrib["file_name"]
