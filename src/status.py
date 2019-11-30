@@ -12,6 +12,7 @@ class KafkaManager:
     attrib = ""
     previous_command = ""
     file_name = ""
+    files = {}
 
     def __init__(self):
         """init"""
@@ -50,13 +51,14 @@ class KafkaManager:
                 elif type1 == "filewriter_status_master":
                     files = val["files"]
                     #print(files)
-                    key = ""
+                    files_dict = ""
                     key_array = list(files.values())
-                    key = key_array.pop()
+                    files_dict = key_array.pop()
 
-                    self.file_name = key["filename"]
+                    self.file_name = files_dict["filename"]
+                    self.files = files_dict
                     files = ""
-                    key = ""
+                    files_dict = ""
                     #print(self.file_name)
                 else:
                     print(type1)
@@ -66,6 +68,8 @@ class KafkaManager:
                         if code == "START":
                             pass
                         elif code == "CLOSE":
+                            print(message.offset)
+                            print(self.files)
                             print("closing")
                             print(self.file_name)
                             print(val)
