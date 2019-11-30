@@ -36,27 +36,27 @@ class KafkaManager:
             #                                   message.value
             #                                   ))
             val = message.value
-            print(message.offset)
-            if "type" in val:
-                #print(val["type"])
-                type = val["type"]
-                if (type == "stream_master_status"):
-                    pass
-                elif (type == "filewriter_status_master"):
-                    pass
-                else:
-                    print(type)
-                    if "timestamp" in val:
-                        print(val["timestamp"])
-                        dt_object = datetime.fromtimestamp(val["timestamp"])
-                        print("dt_object =", dt_object)
-                    exit(0)
+            # print(message.offset)
+            if "timestamp" in val:
+                print(val["timestamp"])
+                dt_object = datetime.fromtimestamp(val["timestamp"])
+                print("dt_object =", dt_object)
+        if "type" in val:
+            #print(val["type"])
+            type = val["type"]
+            if (type == "stream_master_status"):
+                pass
+            elif (type == "filewriter_status_master"):
+                pass
+            else:
+                print(type)
+                exit(0)
 
 def main():
-    """main"""
-    manager = KafkaManager()
-    manager.consume()
+"""main"""
+manager = KafkaManager()
+manager.consume()
 
 
 if __name__ == "__main__":
-    main()
+main()
