@@ -57,6 +57,7 @@ class KafkaManager:
                     key_array = list(files.values())
                     files_dict = key_array.pop()
                     # check servcie id
+                    print("gmx",val["service_id"])
                     if val["service_id"] == self.service_id:
                         self.file_name = files_dict["filename"]
                     self.files = files
