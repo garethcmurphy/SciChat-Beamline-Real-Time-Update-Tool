@@ -25,17 +25,18 @@ class KafkaManager:
         consumer.seek_to_end()
         last_offset = consumer.position(partition)
         print(last_offset)
-        consumer.seek(partition=partition, offset=last_offset)
+        consumer.seek(partition=partition, offset=last_offset-2000)
 
         for message in consumer:
             # message value and key are raw bytes -- decode if necessary!
             # e.g., for unicode: `message.value.decode('utf-8')`
-            print("%s:%d:%d: key=%s value=%s" % (message.topic, message.partition,
+            #print("%s:%d:%d: key=%s value=%s" % (message.topic, message.partition,
                                                message.offset, message.key,
                                                message.value
                                                ))
             val = message.value
-           
+            if "code" in val:
+                print(val["code"])
 
 def main():
     """main"""
