@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """kafa consume"""
+import glob
 import time
 import json
 from datetime import datetime
@@ -41,8 +42,8 @@ class KafkaManager:
             #                                   message.value
             #                                   ))
             val = message.value
-            if (self.log_all == True):
-                print(val)
+            #if (self.log_all == True):
+                #print(val)
             # print(message.offset)
             if "timestamp" in val:
                 # print(val["timestamp"])
@@ -88,7 +89,9 @@ class KafkaManager:
                             print(message.offset)
                             # print(self.files)
                             print("closing")
-                            print(self.file_name)
+                            for file in glob.glob("/data/kafka-to-nexus/*"+self.job_id+"*"):
+                                print(file)                
+                            # print(self.file_name)
                             print(val)
                             self.log_all = False
                     # exit(0)
