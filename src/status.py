@@ -58,7 +58,7 @@ class KafkaManager:
                         code = val["code"]
                         print(code)
                         if code == "START":
-                            self.file_name = ""
+                            pass
                         elif code == "CLOSE":
                             print("closing")
                             print(self.file_name)
