@@ -52,6 +52,8 @@ class KafkaManager:
                     key = ""
                     key = list(files.values())[0]
                     self.file_name = key["filename"]
+                    files = ""
+                    key = ""
                     #print(self.file_name)
                 else:
                     print(type1)
