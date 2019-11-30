@@ -49,6 +49,7 @@ class KafkaManager:
                     pass
                 elif (type1 == "filewriter_status_master"):
                     files = val["files"]
+                    key = ""
                     key = list(files.values())[0]
                     self.file_name = key["filename"]
                     #print(self.file_name)
