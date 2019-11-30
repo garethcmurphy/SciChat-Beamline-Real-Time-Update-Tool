@@ -15,6 +15,7 @@ class KafkaManager:
     files = {}
     service_id = ""
     job_id = ""
+
     def __init__(self):
         """init"""
 
@@ -29,30 +30,30 @@ class KafkaManager:
         consumer.seek_to_end()
         last_offset = consumer.position(partition)
         print(last_offset)
-        consumer.seek(partition=partition, offset=13565573  )
+        consumer.seek(partition=partition, offset=13565573)
 
         for message in consumer:
             # message value and key are raw bytes -- decode if necessary!
             # e.g., for unicode: `message.value.decode('utf-8')`
-            #print("%s:%d:%d: key=%s value=%s" % (message.topic, message.partition,
+            # print("%s:%d:%d: key=%s value=%s" % (message.topic, message.partition,
             #                                   message.offset, message.key,
             #                                   message.value
             #                                   ))
             val = message.value
             # print(message.offset)
             if "timestamp" in val:
-                #print(val["timestamp"])
+                # print(val["timestamp"])
                 dt_object = datetime.fromtimestamp(int(val["timestamp"])/1000)
                 #print("dt_object =", dt_object)
             if "type" in val:
-                #print(val["type"])
+                # print(val["type"])
                 type1 = val["type"]
                 if type1 == "stream_master_status":
                     pass
                 elif type1 == "filewriter_status_master":
-                    #print(message.offset)
+                    # print(message.offset)
                     files = val["files"]
-                    #print(val)
+                    # print(val)
                     files_dict = ""
                     key_array = list(files.values())
                     files_dict = key_array.pop()
@@ -60,11 +61,12 @@ class KafkaManager:
                     # print("gmx",val["service_id"])
                     if val["service_id"] == self.service_id:
                         if self.job_id in files:
-                            self.file_name = files[self.job_id]["filename"] 
+                            print("master")
+                            self.file_name = files[self.job_id]["filename"]
                     self.files = files
                     files = ""
                     files_dict = ""
-                    #print(self.file_name)
+                    # print(self.file_name)
                 else:
                     print(type1)
                     if "code" in val:
@@ -73,7 +75,7 @@ class KafkaManager:
                         if code == "START":
                             print(val["service_id"])
                             self.service_id = val["service_id"]
-                            self.job_id =  val["job_id"]
+                            self.job_id = val["job_id"]
                             print("job id", self.job_id)
                         elif code == "CLOSE":
                             print(message.offset)
@@ -81,7 +83,8 @@ class KafkaManager:
                             print("closing")
                             print(self.file_name)
                             print(val)
-                    #exit(0)
+                    # exit(0)
+
 
 def main():
     """main"""
