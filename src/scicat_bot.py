@@ -72,12 +72,18 @@ class ScicatBot():
         headers = {"Content-Type": "image/png",
                    "Content-Length": str(stats.st_size)}
         filename = self.data_file
-        visens.preview(filename, log=True, save="im.png")
+        try:
+            visens.preview(filename, log=True, save="im.png")
+        except TypeError as err:
+            print("Type error: {0}".format(err))
+            print("Error reading hdf5 file")
+            return 0
         files = open('im.png', 'rb').read()
         response = requests.post(media_url, data=files, headers=headers)
         response_json = response.json()
         self.content_uri = response_json["content_uri"]
         print(media_url)
+        return 0
 
     def post_image(self, room_id):
         """post image"""
