@@ -28,7 +28,7 @@ class KafkaManager:
         consumer.seek_to_end()
         last_offset = consumer.position(partition)
         print(last_offset)
-        consumer.seek(partition=partition, offset=last_offset-1000000)
+        consumer.seek(partition=partition, offset=13165573  )
 
         for message in consumer:
             # message value and key are raw bytes -- decode if necessary!
@@ -49,8 +49,9 @@ class KafkaManager:
                 if type1 == "stream_master_status":
                     pass
                 elif type1 == "filewriter_status_master":
+
                     files = val["files"]
-                    #print(files)
+                    print(files)
                     files_dict = ""
                     key_array = list(files.values())
                     files_dict = key_array.pop()
