@@ -13,6 +13,7 @@ class KafkaManager:
     previous_command = ""
     file_name = ""
     files = {}
+    service_id = ""
 
     def __init__(self):
         """init"""
@@ -55,8 +56,9 @@ class KafkaManager:
                     files_dict = ""
                     key_array = list(files.values())
                     files_dict = key_array.pop()
-
-                    self.file_name = files_dict["filename"]
+                    # check servcie id
+                    if val["service_id"] == self.service_id:
+                        self.file_name = files_dict["filename"]
                     self.files = files
                     files = ""
                     files_dict = ""
@@ -67,7 +69,7 @@ class KafkaManager:
                         code = val["code"]
                         print(code)
                         if code == "START":
-                            pass
+                            print(val["service_id"])
                         elif code == "CLOSE":
                             print(message.offset)
                             print(self.files)
