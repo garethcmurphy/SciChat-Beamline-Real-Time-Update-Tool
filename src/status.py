@@ -73,7 +73,7 @@ class KafkaManager:
                             print(val["service_id"])
                         elif code == "CLOSE":
                             print(message.offset)
-                            print(self.files)
+                            # print(self.files)
                             print("closing")
                             print(self.file_name)
                             print(val)
