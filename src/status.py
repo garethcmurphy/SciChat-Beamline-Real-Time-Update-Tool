@@ -49,7 +49,7 @@ class KafkaManager:
                     pass
                 elif type1 == "filewriter_status_master":
                     files = val["files"]
-                    print(files)
+                    #print(files)
                     key = ""
                     key_array = list(files.values())
                     key = key_array.pop()
