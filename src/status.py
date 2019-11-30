@@ -36,8 +36,8 @@ class KafkaManager:
             #                                   ))
             val = message.value
             print(message.offset)
-            if "code" in val:
-                print(val["code"])
+            if "type" in val:
+                print(val["type"])
 
 def main():
     """main"""
