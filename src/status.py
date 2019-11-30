@@ -51,7 +51,7 @@ class KafkaManager:
                     files = val["files"]
                     key = list(files.values())[0]
                     self.file_name = key["filename"]
-                    print(self.file_name)
+                    #print(self.file_name)
                 else:
                     print(type1)
                     if "code" in val:
@@ -60,6 +60,7 @@ class KafkaManager:
                         if code == "START":
                             self.file_name = ""
                         elif code == "CLOSE":
+                            print("closing")
                             print(self.file_name)
                             print(val)
                     #exit(0)
