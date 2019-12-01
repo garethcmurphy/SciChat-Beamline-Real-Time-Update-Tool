@@ -49,7 +49,13 @@ class ScicatBot():
         basename = os.path.basename(filename).strip(".hdf")
         print(basename)
         response = scicat.search(basename, 1)
-        first = response[0]
+        try: 
+            first = response[0]
+        except IndexError as err:
+            print("Type error: {0}".format(err))
+            print("Error reading hdf5 file")
+            return 0
+
         print(first)
         if "pid" in first:
             pid = first["pid"]
@@ -63,6 +69,7 @@ class ScicatBot():
         response = requests.post(url, json=data)
         token = response.json()
         print(token)
+        return 0
 
     def upload_image(self, filename):
         """post"""
