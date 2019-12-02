@@ -101,7 +101,7 @@ class ScicatBot():
 
         url = self.create_url("/rooms/"+room_id + "/send/m.room.message")
         data = {"msgtype": "m.image",
-                "body": "plot of data",
+                "body": "plot of the data",
                 'url': self.content_uri}
 
         response = requests.post(url, json=data)
