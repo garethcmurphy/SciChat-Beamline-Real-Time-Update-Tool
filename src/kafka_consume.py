@@ -18,7 +18,7 @@ class KafkaManager:
         self.kafka_host = 'localhost:9093'
         self.kafka_topic = 'V20_writerCommand'
         self.proposal_id = 'QHK123'
-        #self.proposal_id = 'YC7SZ5'
+        self.proposal_id = 'YC7SZ5'
         self.offset_decrement = 4
 
     def consume(self):
