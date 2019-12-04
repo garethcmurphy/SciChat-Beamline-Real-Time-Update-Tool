@@ -16,6 +16,7 @@ class KafkaManager:
     def __init__(self):
         """init"""
         self.kafka_host = 'localhost:9093'
+        self.kafka_host = 'localhost:9092'
         self.kafka_topic = 'V20_writerCommand'
         self.proposal_id = 'QHK123'
         self.proposal_id = 'YC7SZ5'
