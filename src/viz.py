@@ -7,7 +7,7 @@ def main():
     path = "/data/kafka-to-nexus/"
     path = "./"
     filename = "nicos_00000757.hdf"
-    visens.preview(path+filename, log=True, save=filename.replace(".hdf", ".png"))
+    visens.preview(path+filename, log=True,layout="wide", save=filename.replace(".hdf", ".png"))
 
 
 if __name__ == "__main__":
