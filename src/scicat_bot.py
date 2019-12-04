@@ -80,7 +80,7 @@ class ScicatBot():
                    "Content-Length": str(stats.st_size)}
         filename = self.data_file
         try:
-            visens.preview(filename, log=True, save="im.png")
+            visens.preview(filename, log=True, layout="wide", save="im.png")
         except TypeError as err:
             print("Type error: {0}".format(err))
             print("Error reading hdf5 file")

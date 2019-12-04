@@ -15,19 +15,25 @@ class KafkaManager:
 
     def __init__(self):
         """init"""
+        self.kafka_host = 'localhost:9093'
+        self.kafka_topic = 'V20_writerCommand'
+        self.proposal_id = 'QHK123'
+        #self.proposal_id = 'YC7SZ5'
+        self.offset_decrement = 4
 
     def consume(self):
         """setup consumer"""
         consumer = KafkaConsumer(
-            bootstrap_servers=['localhost:9093'],
+            bootstrap_servers=[self.kafka_host],
             enable_auto_commit=False,
             value_deserializer=lambda x: json.loads(x.decode('utf-8')))
-        partition = TopicPartition('V20_writerCommand', 0)
+        partition = TopicPartition(self.kafka_topic, 0)
         consumer.assign([partition])
         consumer.seek_to_end()
         last_offset = consumer.position(partition)
         print(last_offset)
-        consumer.seek(partition=partition, offset=last_offset - 18)
+        consumer.seek(partition=partition, offset=last_offset -
+                      self.offset_decrement)
 
         for message in consumer:
             # message value and key are raw bytes -- decode if necessary!
@@ -51,9 +57,7 @@ class KafkaManager:
                         time.sleep(5)
                         bot = ScicatBot()
                         bot.login()
-                        proposal_id = "QHK123"
-                        proposal_id = "YC7SZ5"
-                        room_alias = "#"+proposal_id+":ess"
+                        room_alias = "#"+self.proposal_id+":ess"
                         room_id = bot.get_room_id(room_alias)
                         filename = self.attrib["file_name"]
                         bot.post(room_id, filename)
@@ -61,7 +65,7 @@ class KafkaManager:
                         try:
                             with h5py.File(filename, "r", libver="latest", swmr=True) as file:
                                 pass
-                                #print(file["/entry/title"])
+                                # print(file["/entry/title"])
                             bot.upload_image(image_name)
                             bot.post_image(room_id)
                         except OSError as err:
